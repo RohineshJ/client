@@ -1,0 +1,937 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Pricing That Grows With You</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #f9fafc;
+    color: #1f2937;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  h2 {
+    font-weight: 600;
+    font-size: 25px;
+    margin: 0;
+  }
+  h3 {
+    font-weight: 600;
+    font-size: 14px;
+    margin: 0 0 8px 0;
+  }
+  p {
+    margin: 0;
+    font-weight: 400;
+    font-size: 13px;
+    color: #4b5563;
+  }
+  .container {
+    max-width: 1024px;
+    margin: 40px auto 60px;
+    padding: 0 20px;
+  }
+  .header {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  .header h2 {
+    margin-bottom: 8px;
+  }
+  .header p {
+    font-size: 13px;
+    color: #4b5563;
+  }
+  .toggle-container {
+    background-color: #e5e7eb;
+    border-radius: 9999px;
+    display: flex;
+    justify-content: center;
+    padding: 4px;
+    margin: 0 auto 32px;
+    font-size: 12px;
+    user-select: none;
+    width: 220px;
+  }
+  .toggle-option {
+    flex: 1 1 50%;
+    padding: 6px 7px;
+    border-radius: 9999px;
+    cursor: pointer;
+    color: #6b7280;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: background-color 0.2s, color 0.2s;
+    border: none;
+    background: none;
+    text-align: center;
+  }
+  .toggle-option.active {
+    background-color: #FFBF00;
+    color: white;
+  }
+  
+  .pricingsection{
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    padding: 20px;
+
+  }
+
+  .pricing-cards {
+    display: flex;
+    gap: 24px;
+    flex-wrap: nowrap;
+    padding: 10px;
+    border-radius: 15px;
+    justify-content: center;
+
+  }
+  .card {
+    background-color: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 24px 24px 32px;
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+  }
+  .card.popular {
+    border-color: #FFBF00;
+  }
+  .popular-badge {
+    position: absolute;
+    top: -10px;
+    right: 12px;
+    background-color: #FFBF00;
+    color: white;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 9999px;
+    user-select: none;
+  }
+  .card h3 {
+    margin-bottom: 4px;
+  }
+  .price {
+    font-weight: 700;
+    font-size: 24px;
+    margin: 8px 0 4px 0;
+    color: #111827;
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+  }
+  .price small {
+    font-weight: 400;
+    font-size: 13px;
+    color: #6b7280;
+  }
+  ul.features {
+    list-style: none;
+    padding-left: 0;
+    margin: 16px 0 24px 0;
+  }
+  ul.features li {
+    font-size: 13px;
+    color: #374151;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+  }
+  ul.features li i {
+    color: #FFBF00;
+    margin-right: 8px;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  button.btn {
+    background-color: transparent;
+    border: 1.5px solid #FFBF00;
+    border-radius: 6px;
+    color: #FFBF00;
+    font-weight: 600;
+    font-size: 13px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+    user-select: none;
+    align-self: stretch;
+    text-align: center;
+  }
+  button.btn:hover {
+    background-color: #FFBF00;
+    color: white;
+  }
+  .card.popular button.btn {
+    background-color: #FFBF00;
+    border-color: #FFBF00;
+    color: white;
+  }
+  .card.popular button.btn:hover {
+    background-color: #FFBF00;
+    border-color: #FFBF00;
+  }
+  .roi-section {
+    background-color: white;
+    border-radius: 12px;
+    padding: 24px 32px;
+    display: flex;
+    margin-top: 40px;
+    gap: 32px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    flex-wrap: nowrap;
+    justify-content: center;
+  }
+  .roi-left, .roi-right {
+    flex: 1 1 320px;
+    min-width: 320px;
+  }
+  .roi-left {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .roi-left h3 {
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 0;
+    text-align: center;
+  }
+  .roi-left label {
+    font-weight: 600;
+    font-size: 12px;
+    margin-bottom: 6px;
+    color: #111827;
+  }
+  .slider-container {
+    display: flex;
+    flex-direction: column;
+  }
+  input[type=range] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    border-radius: 9999px;
+    background: #FFBF00;
+    outline: none;
+    margin: 0;
+    background: linear-gradient(to right, #FFBF00 0%, #FFBF00 50%, #e5e7eb 50%, #e5e7eb 100%);
+  }
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #FFBF00;
+    cursor: pointer;
+    border: none;
+    margin-top: -1px;
+    box-shadow: 0 0 2px rgba(0,0,0,0.15);
+    position: relative;
+    z-index: 1;
+  }
+  input[type=range]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #FFBF00;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 0 2px rgba(0,0,0,0.15);
+    position: relative;
+    z-index: 1;
+  }
+  .slider-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: #6b7280;
+    margin-top: 4px;
+    user-select: none;
+  }
+  .roi-right {
+    background-color: #f3f4f6;
+    border-radius: 12px;
+    padding: 20px 24px;
+    font-size: 13px;
+    color: #374151;
+  }
+  .roi-right h3 {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 16px;
+    color: #111827;
+    text-align: center;
+  }
+  .roi-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  .roi-row strong {
+    font-weight: 600;
+  }
+  .roi-row .value {
+    font-weight: 700;
+  }
+  .roi-row.total {
+    border-top: 1px solid #d1d5db;
+    padding-top: 12px;
+    margin-top: 12px;
+    font-weight: 700;
+    color: #FFBF00;
+  }
+  .roi-row.total .value {
+    font-weight: 700;
+    color: #FFBF00;
+  }
+  .roi-btn {
+    margin-top: 16px;
+    width: 100%;
+    background-color: #FFBF00;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-weight: 600;
+    font-size: 13px;
+    padding: 10px 0;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.2s;
+  }
+  .roi-btn:hover {
+    background-color: #FFBF00;
+  }
+  @media (max-width: 1024px) {
+    .pricing-cards {
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .card {
+      width: 280px;
+    }
+    .roi-section {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 24px;
+    }
+    .roi-left, .roi-right {
+      min-width: 280px;
+      padding: 10px;
+      flex: 1 1 100%;
+    }
+  }
+  @media (max-width: 480px) {
+    .toggle-container {
+      width: 100%;
+      max-width: 280px;
+    }
+  }
+
+
+
+     .testimonials-section {
+      padding: 60px 20px;
+      text-align: center;
+      background: linear-gradient(to bottom, #fff 70%, #ffe493);
+    }
+
+    .testimonials-section h2 {
+      font-size: 28px;
+      margin-bottom: 40px;
+      font-weight: 700;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding-top: 30px ;
+    }
+
+    .testimonial-card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.05);
+      text-align: left;
+      position: relative;
+      transition: transform 0.3s;
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .center-card {
+      transform: translateY(-30px);
+    }
+
+    .stars {
+      color: #FFBF00;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .stars span {
+      color: #444;
+      font-weight: normal;
+    }
+
+    .testimonial-card p {
+      font-size: 14.5px;
+      color: #333;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .author {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .author img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+
+    .author div {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .author strong {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .author small {
+      font-size: 12px;
+      color: #777;
+    }
+
+    .see-more {
+      margin-top: 30px;
+    }
+
+    .see-more button {
+      padding: 12px 24px;
+      background-color: #FFBF00;
+      color: white;
+      border: none;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .see-more button:hover {
+      background-color: #FFBF00;
+    }
+
+    @media (max-width: 768px) {
+      .center-card {
+        transform: none;
+      }
+    }
+
+    /* Row 3 blur wrapper */
+    .blur-wrapper {
+      position: relative;
+      overflow: hidden;
+      max-height: 140px; /* roughly height of one row */
+      margin-bottom: 20px;
+      filter: blur(3px);
+      pointer-events: none;
+      transition: all 0.5s ease;
+    }
+
+    .blur-wrapper.visible {
+      filter: none;
+      max-height: none;
+      pointer-events: auto;
+    }
+
+    /* Extra rows container - hidden initially */
+    .extra-rows-wrapper {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.5s ease, opacity 0.5s ease;
+      margin-bottom: 20px;
+    }
+
+    .extra-rows-wrapper.visible {
+      max-height: 2000px; /* large enough to show all extra rows */
+      opacity: 1;
+    }
+</style>
+</head>
+<body>
+  <main class="container" role="main">
+    <header class="header" aria-label="Page header">
+      <h2>Pricing That Grows With You</h2>
+      <p>Choose the plan that fits your business needs. No hidden fees, no surprises.</p>
+    </header>
+    <section class="pricingsection">
+        <nav class="toggle-container" role="tablist" aria-label="Billing period toggle">
+        <button class="toggle-option active" role="tab" aria-selected="true" tabindex="0" id="monthly-btn">Monthly</button>
+        <button class="toggle-option" role="tab" aria-selected="false" tabindex="-1" id="annual-btn">Annual (Save 20%)</button>
+        </nav>
+
+        <section class="pricing-cards" aria-label="Pricing plans">
+        <!-- Monthly Pricing -->
+        <article class="card monthly" aria-labelledby="starter-title" >
+            <h3 id="starter-title">Starter</h3>
+            <p>Perfect for small businesses</p>
+            <div class="price" aria-label="Price forty nine dollars per month">
+            <span>$49</span><small>/month</small>
+            </div>
+            <ul class="features" role="list">
+            <li><i class="fas fa-check"></i>Up to 100 bookings/month</li>
+            <li><i class="fas fa-check"></i>Review management (3 platforms)</li>
+            <li><i class="fas fa-check"></i>Basic analytics</li>
+            <li><i class="fas fa-check"></i>Email support</li>
+            </ul>
+            <button class="btn" type="button" aria-label="Get started with Starter plan">Get Started</button>
+        </article>
+
+        <article class="card popular monthly" aria-labelledby="growth-title">
+            <span class="popular-badge" aria-label="Most Popular">Most Popular</span>
+            <h3 id="growth-title">Growth</h3>
+            <p>For growing businesses</p>
+            <div class="price" aria-label="Price ninety nine dollars per month">
+            <span>$99</span><small>/month</small>
+            </div>
+            <ul class="features" role="list">
+            <li><i class="fas fa-check"></i>Up to 500 bookings/month</li>
+            <li><i class="fas fa-check"></i>Review management (all platforms)</li>
+            <li><i class="fas fa-check"></i>Advanced analytics</li>
+            <li><i class="fas fa-check"></i>AI response suggestions</li>
+            <li><i class="fas fa-check"></i>Priority email &amp; chat support</li>
+            </ul>
+            <button class="btn" type="button" aria-label="Get started with Growth plan">Get Started</button>
+        </article>
+
+        <article class="card monthly" aria-labelledby="professional-title">
+            <h3 id="professional-title">Professional</h3>
+            <p>For established businesses</p>
+            <div class="price" aria-label="Price two hundred forty nine dollars per month">
+            <span>$249</span><small>/month</small>
+            </div>
+            <ul class="features" role="list">
+            <li><i class="fas fa-check"></i>Unlimited bookings</li>
+            <li><i class="fas fa-check"></i>Review management (all platforms)</li>
+            <li><i class="fas fa-check"></i>Custom analytics &amp; reporting</li>
+            <li><i class="fas fa-check"></i>Advanced AI features</li>
+            <li><i class="fas fa-check"></i>White-labeling</li>
+            <li><i class="fas fa-check"></i>Dedicated account manager</li>
+            </ul>
+            <button class="btn" type="button" aria-label="Get started with Professional plan">Get Started</button>
+        </article>
+
+        <!-- Annual Pricing (hidden by default) -->
+        <article class="card annual" aria-labelledby="starter-title-annual" style="display:none;">
+            <h3 id="starter-title-annual">Starter</h3>
+            <p>Perfect for small businesses</p>
+            <div class="price" aria-label="Price three hundred ninety nine dollars per year">
+            <span>$399</span><small>/year</small>
+            </div>
+            <ul class="features" role="list">
+            <li><i class="fas fa-check"></i>Up to 100 bookings/month</li>
+            <li><i class="fas fa-check"></i>Review management (3 platforms)</li>
+            <li><i class="fas fa-check"></i>Basic analytics</li>
+            <li><i class="fas fa-check"></i>Email support</li>
+            </ul>
+            <button class="btn" type="button" aria-label="Get started with Starter annual plan">Get Started</button>
+        </article>
+
+        <article class="card popular annual" aria-labelledby="growth-title-annual" style="display:none;">
+            <span class="popular-badge" aria-label="Most Popular">Most Popular</span>
+            <h3 id="growth-title-annual">Growth</h3>
+            <p>For growing businesses</p>
+            <div class="price" aria-label="Price seven hundred ninety nine dollars per year">
+            <span>$799</span><small>/year</small>
+            </div>
+            <ul class="features" role="list">
+            <li><i class="fas fa-check"></i>Up to 500 bookings/month</li>
+            <li><i class="fas fa-check"></i>Review management (all platforms)</li>
+            <li><i class="fas fa-check"></i>Advanced analytics</li>
+            <li><i class="fas fa-check"></i>AI response suggestions</li>
+            <li><i class="fas fa-check"></i>Priority email &amp; chat support</li>
+            </ul>
+            <button class="btn" type="button" aria-label="Get started with Growth annual plan">Get Started</button>
+        </article>
+
+        <article class="card annual" aria-labelledby="professional-title-annual" style="display:none;">
+            <h3 id="professional-title-annual">Professional</h3>
+            <p>For established businesses</p>
+            <div class="price" aria-label="Price two thousand nine hundred eighty nine dollars per year">
+            <span>$2,989</span><small>/year</small>
+            </div>
+            <ul class="features" role="list">
+            <li><i class="fas fa-check"></i>Unlimited bookings</li>
+            <li><i class="fas fa-check"></i>Review management (all platforms)</li>
+            <li><i class="fas fa-check"></i>Custom analytics &amp; reporting</li>
+            <li><i class="fas fa-check"></i>Advanced AI features</li>
+            <li><i class="fas fa-check"></i>White-labeling</li>
+            <li><i class="fas fa-check"></i>Dedicated account manager</li>
+            </ul>
+            <button class="btn" type="button" aria-label="Get started with Professional annual plan">Get Started</button>
+        </article>
+        </section>
+    </section>
+
+    <section class="roi-section" aria-label="Calculate your ROI">
+      <div class="roi-left">
+        <h3>Calculate Your ROI</h3>
+
+        <div class="slider-container" aria-label="Average number of bookings per month">
+          <label for="bookings-range">Average number of bookings per month</label>
+          <input type="range" id="bookings-range" name="bookings" min="50" max="1000" step="1" value="1000" aria-valuemin="50" aria-valuemax="1000" aria-valuenow="200" />
+          <div class="slider-labels">
+            <span>50</span>
+            <span>200</span>
+            <span>1000+</span>
+          </div>
+        </div>
+
+        <div class="slider-container" aria-label="Average booking value in dollars">
+          <label for="booking-value-range">Average booking value ($)</label>
+          <input type="range" id="booking-value-range" name="booking-value" min="20" max="500" step="1" value="1000" aria-valuemin="20" aria-valuemax="500" aria-valuenow="100" />
+          <div class="slider-labels">
+            <span>$20</span>
+            <span>$100</span>
+            <span>$500+</span>
+          </div>
+        </div>
+
+        <div class="slider-container" aria-label="Current no-show rate percentage">
+          <label for="no-show-range">Current no-show rate (%)</label>
+          <input type="range" id="no-show-range" name="no-show" min="5" max="40" step="1" value="15" aria-valuemin="5" aria-valuemax="40" aria-valuenow="15" />
+          <div class="slider-labels">
+            <span>5%</span>
+            <span>15%</span>
+            <span>40%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="roi-right" aria-live="polite" aria-atomic="true">
+        <h3>Your Estimated ROI</h3>
+        <div class="roi-row">
+          <strong>Monthly Revenue Increase:</strong>
+          <span class="value">$2,250</span>
+        </div>
+        <div class="roi-row">
+          <strong>Reduced No-Shows Value:</strong>
+          <span class="value">$750</span>
+        </div>
+        <div class="roi-row">
+          <strong>Time Saved Per Month:</strong>
+          <span class="value">20 hours</span>
+        </div>
+        <div class="roi-row total">
+          <strong>Total Monthly Benefit:</strong>
+          <span class="value">$3,000</span>
+        </div>
+        <button class="roi-btn" type="button" aria-label="Get started with Booktara">Get Started with Booktara</button>
+      </div>
+    </section>
+  </main>
+
+
+
+
+  <section class="testimonials-section">
+    <h2>What Our Customers Say</h2>
+
+    <div class="testimonials-grid" id="testimonial-wrapper">
+      <!-- Row 1 -->
+      <div class="testimonial-card">
+        <div class="stars">★★★★★ <span>5.0</span></div>
+        <p>"Booktara transformed our salon's online presence. We went from page 3 to the top of Google Maps in just 6 weeks."</p>
+        <div class="author">
+          <img src="https://randomuser.me/api/portraits/women/65.jpg" />
+          <div>
+            <strong>Priya Sharma</strong>
+            <small>Glamour Beauty Parlour, Delhi</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card center-card">
+        <div class="stars">★★★★★ <span>5.0</span></div>
+        <p>"The AI review system is genius. Our clients love how easy it is to leave feedback. Highly recommend!"</p>
+        <div class="author">
+          <img src="https://randomuser.me/api/portraits/men/32.jpg" />
+          <div>
+            <strong>Rahul Patel</strong>
+            <small>StyleBar Salon, Bengaluru</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="stars">★★★★½ <span>4.5</span></div>
+        <p>"We were spending thousands on ads. Booktara gave us organic traffic that converts. Booking rate up 42% in 3 months."</p>
+        <div class="author">
+          <img src="https://randomuser.me/api/portraits/women/22.jpg" />
+          <div>
+            <strong>Aisha Khan</strong>
+            <small>Glow Spa & Wellness, Mumbai</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="testimonials-grid" style="max-width: 1000px; margin: 40px auto 20px auto;">
+      <div class="testimonial-card">
+        <div class="stars">★★★★★ <span>5.0</span></div>
+        <p>"Excellent customer support and smooth experience."</p>
+        <div class="author">
+          <img src="https://randomuser.me/api/portraits/women/30.jpg" />
+          <div>
+            <strong>Neha Gupta</strong>
+            <small>Salon Elite, Chennai</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card center-card">
+        <div class="stars">★★★★★ <span>5.0</span></div>
+        <p>"Our bookings increased after using Booktara's platform."</p>
+        <div class="author">
+          <img src="https://randomuser.me/api/portraits/men/41.jpg" />
+          <div>
+            <strong>Vikram Singh</strong>
+            <small>Urban Cuts, Kolkata</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="stars">★★★★ <span>4.0</span></div>
+        <p>"User-friendly and great for managing appointments."</p>
+        <div class="author">
+          <img src="https://randomuser.me/api/portraits/women/37.jpg" />
+          <div>
+            <strong>Sana Malik</strong>
+            <small>Charm Salon, Pune</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 3 blurred -->
+    <div class="blur-wrapper" id="blurContainer">
+      <div class="testimonials-grid" style="max-width: 1000px; margin: 0 auto;">
+        <div class="testimonial-card">
+          <div class="stars">★★★★½ <span>4.5</span></div>
+          <p>"Easy to use and support is excellent. Our customers love how fast bookings are now."</p>
+          <div class="author">
+            <img src="https://randomuser.me/api/portraits/women/50.jpg" />
+            <div>
+              <strong>Riya Verma</strong>
+              <small>Glow Touch Spa, Pune</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card center-card">
+          <div class="stars">★★★★★ <span>5.0</span></div>
+          <p>"Fantastic platform to grow business. The insights we get are very actionable."</p>
+          <div class="author">
+            <img src="https://randomuser.me/api/portraits/men/44.jpg" />
+            <div>
+              <strong>Arjun Mehta</strong>
+              <small>Men's Hub, Hyderabad</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="stars">★★★★½ <span>4.5</span></div>
+          <p>"Best software for salon management. We are seeing growth every month!"</p>
+          <div class="author">
+            <img src="https://randomuser.me/api/portraits/women/45.jpg" />
+            <div>
+              <strong>Sana Iqbal</strong>
+              <small>Beauty Bliss, Jaipur</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Extra rows, hidden initially, no blur -->
+    <div class="extra-rows-wrapper" id="extraRows">
+      <div class="testimonials-grid" style="max-width: 1000px; margin: 0 auto 40px auto;">
+        <!-- Row 4 -->
+        <div class="testimonial-card">
+          <div class="stars">★★★★ <span>4.0</span></div>
+          <p>"Very helpful analytics, easy to understand."</p>
+          <div class="author">
+            <img src="https://randomuser.me/api/portraits/men/25.jpg" />
+            <div>
+              <strong>Aditya Rao</strong>
+              <small>Fresh Cuts, Ahmedabad</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card center-card">
+          <div class="stars">★★★★★ <span>5.0</span></div>
+          <p>"Reliable and quick service. Highly recommended."</p>
+          <div class="author">
+            <img src="https://randomuser.me/api/portraits/women/29.jpg" />
+            <div>
+              <strong>Meera Nair</strong>
+              <small>Elegant Salon, Kochi</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="stars">★★★★½ <span>4.5</span></div>
+          <p>"Our booking process is seamless thanks to Booktara."</p>
+          <div class="author">
+            <img src="https://randomuser.me/api/portraits/men/34.jpg" />
+            <div>
+              <strong>Karan Malhotra</strong>
+              <small>Urban Styles, Jaipur</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonials-grid" style="max-width: 1000px; margin: 40px auto 0 auto;">
+        <!-- Row 5 -->
+        <div class="testimonial-card">
+          <div class="stars">★★★★ <span>4.0</span></div>
+          <p>"Great support team and very helpful features."</p>
+          <div class="author">
+            <img src="https://randomuser.me/api/portraits/women/31.jpg" />
+            <div>
+              <strong>Divya Sharma</strong>
+              <small>Beauty Lounge, Chandigarh</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card center-card">
+          <div class="stars">★★★★★ <span>5.0</span></div>
+          <p>"Our clients love the easy booking system."</p>
+          <div class="author">
+            <img src="https://randomuser.me/api/portraits/men/39.jpg" />
+            <div>
+              <strong>Rohit Desai</strong>
+              <small>Classic Cuts, Surat</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="stars">★★★★½ <span>4.5</span></div>
+          <p>"Efficient and user-friendly software."</p>
+          <div class="author">
+            <img src="https://randomuser.me/api/portraits/women/28.jpg" />
+            <div>
+              <strong>Sheetal Joshi</strong>
+              <small>Salon Royale, Indore</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="see-more">
+      <button onclick="revealMore()">See more reviews →</button>
+    </div>
+  </section>
+
+<script>
+  const monthlyBtn = document.getElementById('monthly-btn');
+  const annualBtn = document.getElementById('annual-btn');
+  const monthlyCards = document.querySelectorAll('.card.monthly');
+  const annualCards = document.querySelectorAll('.card.annual');
+
+  function showMonthly() {
+    monthlyBtn.classList.add('active');
+    monthlyBtn.setAttribute('aria-selected', 'true');
+    monthlyBtn.tabIndex = 0;
+
+    annualBtn.classList.remove('active');
+    annualBtn.setAttribute('aria-selected', 'false');
+    annualBtn.tabIndex = -1;
+
+    monthlyCards.forEach(card => card.style.display = 'flex');
+    annualCards.forEach(card => card.style.display = 'none');
+  }
+
+  function showAnnual() {
+    annualBtn.classList.add('active');
+    annualBtn.setAttribute('aria-selected', 'true');
+    annualBtn.tabIndex = 0;
+
+    monthlyBtn.classList.remove('active');
+    monthlyBtn.setAttribute('aria-selected', 'false');
+    monthlyBtn.tabIndex = -1;
+
+    annualCards.forEach(card => card.style.display = 'flex');
+    monthlyCards.forEach(card => card.style.display = 'none');
+  }
+
+  monthlyBtn.addEventListener('click', showMonthly);
+  annualBtn.addEventListener('click', showAnnual);
+</script>
+
+<script>
+  function updateSliderBackground(slider) {
+    const min = parseFloat(slider.min);
+    const max = parseFloat(slider.max);
+    const val = parseFloat(slider.value);
+
+    const percentage = ((val - min) / (max - min)) * 100;
+    slider.style.background = `linear-gradient(to right, #FFBF00 0%, #FFBF00 ${percentage}%, #e5e7eb ${percentage}%, #e5e7eb 100%)`;
+  }
+
+  document.querySelectorAll('input[type="range"]').forEach(slider => {
+    updateSliderBackground(slider); // Set initial background
+    slider.addEventListener('input', () => updateSliderBackground(slider)); // Update on interaction
+  });
+</script>
+
+
+  <script>
+    function revealMore() {
+      const blurContainer = document.getElementById('blurContainer');
+      const extraRows = document.getElementById('extraRows');
+      blurContainer.classList.add('visible');
+      extraRows.classList.add('visible');
+      document.querySelector('.see-more').style.display = 'none';
+      blurContainer.scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+
+</body>
+</html>
